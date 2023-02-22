@@ -36,7 +36,6 @@ void	init_mutexes(t_table *table)
 		pthread_mutex_init(&table->mutex_ids[i++], NULL);
 	pthread_mutex_init(table->mutex_print, NULL);
 	pthread_mutex_init(table->mutex_death, NULL);
-	pthread_mutex_init(table->mutex_time, NULL);
 }
 
 void	init_philos(t_table *table)
@@ -73,7 +72,6 @@ t_table	*init_table_helper(t_table *table)
 			sizeof(pthread_mutex_t));
 	table->mutex_print = ft_calloc(1, sizeof(pthread_mutex_t));
 	table->mutex_death = ft_calloc(1, sizeof(pthread_mutex_t));
-	table->mutex_time = ft_calloc(1, sizeof(pthread_mutex_t));
 	philo = calloc(table->n_of_philo, sizeof(t_philo));
 	if (!table->forks || !table->ids || !table->thread
 		|| !table->mutex || !table->mutex_print)
