@@ -20,13 +20,11 @@ void	ft_free(t_table *table)
 	pthread_mutex_destroy(table->mutex_ids);
 	pthread_mutex_destroy(table->mutex_print);
 	pthread_mutex_destroy(table->mutex_death);
-	pthread_mutex_destroy(table->mutex_time);
 	free(table->thread);
 	free(table->mutex);
 	free(table->mutex_ids);
 	free(table->mutex_print);
 	free(table->mutex_death);
-	free(table->mutex_time);
 	free(table->philo);
 	free(table);
 }
@@ -75,9 +73,7 @@ void	ft_print(t_philo *philo)
 	}
 	else
 		pthread_mutex_unlock(philo->table->mutex_death);
-	pthread_mutex_lock(philo->table->mutex_time);
 	time = ft_get_time() - philo->table->start_time;
-	pthread_mutex_unlock(philo->table->mutex_time);
 	pthread_mutex_lock(philo->table->mutex_print);
 	if (philo->state == 1)
 		printf("\x1b[36m%d %d %s\x1b[0m\n", time, philo->id, " is sleeping");
